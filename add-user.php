@@ -14,14 +14,15 @@ if (!empty($_POST)) {
   $pw = md5($_POST['pass']);
   $repw = md5($_POST['repass']);
   $role = $_POST['role'];
+  $slug=uniqid('U');
   $image = $_FILES['pic'];
   $imageName = '';
 
   if ($image['name'] != '') {
     $imageName = 'user_' . time() . '_' . rand(1000, 1000000) . '.' . pathinfo($image['name'], PATHINFO_EXTENSION);
   }
-  $insert = "INSERT INTO user(user_name,user_phone,user_email,user_username,user_password,role_id,user_photo)
-  VALUES('$name','$phone','$email','$username','$pw','$role','$imageName')";
+  $insert = "INSERT INTO user(user_name,user_phone,user_email,user_username,user_password,role_id,user_slug,user_photo)
+  VALUES('$name','$phone','$email','$username','$pw','$role','$slug','$imageName')";
 
   if (!empty($name)) {
     if (!empty($email)) {
