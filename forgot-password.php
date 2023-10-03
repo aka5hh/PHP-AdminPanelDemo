@@ -32,14 +32,14 @@ require_once('functions\functions.php');
                                         $data = mysqli_fetch_assoc($Q);
 
                                         if ($data) {
-                                            $to = $email ;
-                                            $subject = "UY System Portal Reset Password";
-                                            $txt = "www.uysystem.com/reset-password.php";
-                                            $headers = "From: noreply@uysystem.com" . "\r\n" .
-                                                "CC: uysystem@uysystem.com";
+                                            // $to = $email ;
+                                            // $subject = "UY System Portal Reset Password";
+                                            // $txt = "www.uysystem.com/reset-password.php";
+                                            // $headers = "From: noreply@uysystem.com" . "\r\n" .
+                                            //     "CC: uysystem@uysystem.com";
 
-                                            mail($to, $subject, $txt, $headers);
-                                           // header('location: reset-password.php');
+                                            // mail($to, $subject, $txt, $headers);
+                                               header('location: reset-password.php?rp='.$data['user_id']);
                                         } else {
                                             echo "Plase enter correct password";
                                         }
