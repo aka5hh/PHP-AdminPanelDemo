@@ -8,7 +8,7 @@ require_once('functions\functions.php');
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Reset Password</title>
+    <title>Forgot Password</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -33,7 +33,9 @@ require_once('functions\functions.php');
                                         $check=$data['user_email'];
 
                                         if(!empty($check)){
-                                             
+                                           header('location: reset-password.php');
+                                        }else{
+                                            echo "Plase enter correct password";
                                         }
                                     }
                                     ?>
