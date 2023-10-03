@@ -25,21 +25,27 @@ require_once('functions\functions.php');
                             <div class="col-md-7 pe-0">
                                 <div class="form-left h-100 py-5 px-5">
                                     <?php
-                                    if($_POST){
-                                        $email=$_POST['email'];
-                                        $sel="SELECT * FROM user WHERE user_email='$email'";
-                                        $Q=mysqli_query($con,$sel);
-                                        $data=mysqli_fetch_assoc($Q);
-                                        $check=$data['user_email'];
+                                    if ($_POST) {
+                                        $email = $_POST['email'];
+                                        $sel = "SELECT * FROM user WHERE user_email='$email'";
+                                        $Q = mysqli_query($con, $sel);
+                                        $data = mysqli_fetch_assoc($Q);
 
-                                        if(!empty($check)){
-                                           header('location: reset-password.php');
-                                        }else{
+                                        if ($data) {
+                                            $to = $email ;
+                                            $subject = "UY System Portal Reset Password";
+                                            $txt = "www.uysystem.com/reset-password.php";
+                                            $headers = "From: noreply@uysystem.com" . "\r\n" .
+                                                "CC: uysystem@uysystem.com";
+
+                                            mail($to, $subject, $txt, $headers);
+                                           // header('location: reset-password.php');
+                                        } else {
                                             echo "Plase enter correct password";
                                         }
                                     }
                                     ?>
-                                     <form action="" method="post" class="row g-4">
+                                    <form action="" method="post" class="row g-4">
                                         <div class="col-12">
                                             <label>Email<span class="text-danger">*</span></label>
                                             <div class="input-group">
