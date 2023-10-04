@@ -39,7 +39,7 @@ require_once('functions\functions.php');
                                             //     "CC: uysystem@uysystem.com";
 
                                             // mail($to, $subject, $txt, $headers);
-                                               header('location: reset-password.php?rp='.$data['user_id']);
+                                               header('location: reset-password.php?rp='.$data['user_slug']);
                                         } else {
                                             echo "Plase enter correct password";
                                         }

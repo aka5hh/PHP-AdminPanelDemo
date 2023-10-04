@@ -1,6 +1,5 @@
 <?php
 require_once('functions\functions.php');
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,12 +23,44 @@ require_once('functions\functions.php');
                         <div class="row">
                             <div class="col-md-7 pe-0">
                                 <div class="form-left h-100 py-5 px-5">
+                                    <?php
+                                    $slug = $_GET['rp'];
+                                    $sel = "SELECT * FROM user NATURAL JOIN roles WHERE user_slug='$slug'";
+                                    $Q = mysqli_query($con, $sel);
+                                    $data = mysqli_fetch_assoc($Q);
+                                    $id = $data['user_id'];
+                                    
+                                    if ($_POST) {
+                                        $pw = md5($_POST['new_pass']);
+                                        $rpw = md5($_POST['repass']);
+                                    
+                                        $update = "UPDATE user SET user_password='$pw' WHERE user_id='$id'";
+                                    
+                                        if (!empty($pw)) {
+                                            if (!empty($rpw)) {
+                                                if ($pw === $rpw) {
+                                                    if (mysqli_query($con, $update)) {
+                                                        header('Location:logout.php');
+                                                    } else {
+                                                        echo "Opps! Password change failed";
+                                                    }
+                                                } else {
+                                                    echo "Password and Confirm Password didn't match";
+                                                }
+                                            } else {
+                                                echo "Please enter confirm password";
+                                            }
+                                        } else {
+                                            echo "Please enter new password";
+                                        }
+                                    }
+                                     ?>
                                     <form action="" method="post" class="row g-4">
                                         <div class="col-12">
                                             <label>Password<span class="text-danger">*</span></label>
                                             <div class="input-group">
                                                 <div class="input-group-text"><i class="fas fa-lock"></i></div>
-                                                <input type="password" name="pass" class="form-control" placeholder="Enter Password">
+                                                <input type="password" name="new_pass" class="form-control" placeholder="Enter Password">
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -52,7 +83,7 @@ require_once('functions\functions.php');
                             <div class="col-md-5 ps-0 d-none d-md-block">
                                 <div class="form-right h-100 bg-primary text-white text-center pt-5">
                                     <i class="fas fa-user-shield"></i>
-                                    <h2 class="fs-1">Welcome Back!!!</h2>
+                                    <h2 class="fs-1">Reset Password</h2>
                                 </div>
                             </div>
                         </div>

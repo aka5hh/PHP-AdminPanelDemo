@@ -1,5 +1,4 @@
 <?php
-echo uniqid();
 require_once('functions\functions.php');
 needLogged();
 if($_SESSION['role'] == 1) {
