@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 04, 2023 at 12:03 PM
+-- Generation Time: Oct 11, 2023 at 10:55 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -34,6 +34,20 @@ CREATE TABLE `banners` (
   `ban_button` varchar(20) NOT NULL,
   `ban_url` varchar(200) NOT NULL,
   `ban_image` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contact`
+--
+
+CREATE TABLE `contact` (
+  `con_id` int(11) NOT NULL,
+  `con_name` varchar(50) NOT NULL,
+  `con_email` varchar(40) NOT NULL,
+  `con_subject` varchar(250) NOT NULL,
+  `con_message` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -100,6 +114,12 @@ ALTER TABLE `banners`
   ADD PRIMARY KEY (`ban_id`);
 
 --
+-- Indexes for table `contact`
+--
+ALTER TABLE `contact`
+  ADD PRIMARY KEY (`con_id`);
+
+--
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
@@ -124,6 +144,12 @@ ALTER TABLE `user`
 --
 ALTER TABLE `banners`
   MODIFY `ban_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `contact`
+--
+ALTER TABLE `contact`
+  MODIFY `con_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `roles`
